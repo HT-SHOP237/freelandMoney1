@@ -1,0 +1,1433 @@
+ 
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #3498db;
+            --accent-color: #f39c12;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --bull-color: #2ecc71;
+            --bear-color: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-menu a i {
+            margin-right: 8px;
+            color: white;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a:hover i, .nav-menu a.active i {
+            color: var(--primary-color);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e67e22;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--dark-color);
+        }
+        
+        /* Hero Section */
+        .services-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+        
+        .services-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .services-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Account Summary */
+        .account-summary {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px auto;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        
+        .account-header h2 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .account-header h2 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .account-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .account-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .account-item h3 {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        
+        .account-item .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .service-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .service-description {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .service-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-features li i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .btn-service {
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .btn-buy {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-buy:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-graph {
+            background-color: #9b59b6;
+            color: white;
+        }
+        
+        .btn-graph:hover {
+            background-color: #8e44ad;
+        }
+        
+        /* Top Investors Section */
+        .top-investors {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .investors-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .investor-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+        }
+        
+        .investor-rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-right: 15px;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .investor-info {
+            flex-grow: 1;
+        }
+        
+        .investor-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .investor-service {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .investor-profit {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* Graph Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            z-index: 10;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            text-align: center;
+        }
+        
+        .trading-view {
+            margin-bottom: 20px;
+        }
+        
+        .price-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .current-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+        
+        .price-change {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .price-change.positive {
+            color: var(--bull-color);
+        }
+        
+        .price-change.negative {
+            color: var(--bear-color);
+        }
+        
+        .graph-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .graph-controls button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .graph-controls button.active, .graph-controls button:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .chart-type-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .chart-type-controls button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .chart-type-controls button.active, .chart-type-controls button:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .graph-container {
+            height: 400px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .graph-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .info-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .info-box h4 {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .info-box .value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .info-box .value.positive {
+            color: var(--bull-color);
+        }
+        
+        .info-box .value.negative {
+            color: var(--bear-color);
+        }
+        
+        .technical-indicators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .indicator-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .indicator-box h4 {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .indicator-box .value {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        /* Payment Modal */
+        .payment-instructions {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .payment-instructions p {
+            margin-bottom: 10px;
+        }
+        
+        .whatsapp-contact {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .whatsapp-contact i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+        
+        .btn-validate {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-validate:hover {
+            background-color: #27ae60;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+            .transactions-tabs {
+        padding: 60px 0;
+        background-color: white;
+    }
+    
+    .tabs-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+    
+    .tabs-header {
+        display: flex;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .tab-button {
+        flex: 1;
+        padding: 15px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s;
+    }
+    
+    .tab-button.active {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    
+    .tab-button:not(.active):hover {
+        background-color: #f8f9fa;
+    }
+    
+    .tabs-content {
+        padding: 20px;
+    }
+    
+    .tab-pane {
+        display: none;
+    }
+    
+    .tab-pane.active {
+        display: block;
+    }
+    
+    .transactions-list {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .transaction-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+        border-bottom: 1px solid #f1f1f1;
+        transition: background-color 0.2s;
+    }
+    
+    .transaction-item:hover {
+        background-color: #f9f9f9;
+    }
+    
+    .transaction-item:last-child {
+        border-bottom: none;
+    }
+    
+    .transaction-info {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .transaction-name {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    
+    .transaction-service {
+        font-size: 0.85rem;
+        color: #666;
+    }
+    
+    .transaction-amount {
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+    
+    .withdrawal-amount {
+        color: var(--accent-color);
+    }
+    
+    .transaction-time {
+        font-size: 0.8rem;
+        color: #888;
+        margin-top: 5px;
+    }
+     .live-purchases {
+        padding: 60px 0;
+        background-color: #f8f9fa;
+    }
+    
+    .live-purchases-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+    
+    .live-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+        color: white;
+    }
+    
+    .live-indicator {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    
+    .live-dot {
+        width: 10px;
+        height: 10px;
+        background-color: #e74c3c;
+        border-radius: 50%;
+        margin-right: 8px;
+        animation: pulse 1.5s infinite;
+    }
+    
+    .update-info {
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+    
+    .purchases-list {
+        max-height: 500px;
+        overflow-y: auto;
+        padding: 0;
+    }
+    
+    .purchase-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid #f1f1f1;
+        transition: all 0.3s;
+        animation: fadeIn 0.5s ease-in;
+    }
+    
+    .purchase-item:hover {
+        background-color: #f9f9f9;
+    }
+    
+    .purchase-item:last-child {
+        border-bottom: none;
+    }
+    
+    .purchase-info {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    
+    .purchase-user {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    
+    .user-avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        margin-right: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .user-details {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .user-name {
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+    
+    .user-country {
+        font-size: 0.8rem;
+        color: #666;
+        display: flex;
+        align-items: center;
+    }
+    
+    .user-country i {
+        margin-right: 5px;
+        font-size: 0.7rem;
+    }
+    
+    .purchase-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+    }
+    
+    .purchase-service {
+        font-weight: 600;
+        color: var(--dark-color);
+        margin-bottom: 5px;
+    }
+    
+    .purchase-amount {
+        font-weight: bold;
+        color: var(--primary-color);
+        font-size: 1.1rem;
+    }
+    
+    .purchase-time {
+        font-size: 0.75rem;
+        color: #888;
+        margin-top: 5px;
+    }
+    .live-withdrawals {
+        padding: 60px 0;
+        background-color: white;
+    }
+    
+    .live-withdrawals-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    
+    .live-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+        color: white;
+    }
+    
+    .live-indicator {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    
+    .live-dot {
+        width: 10px;
+        height: 10px;
+        background-color: #e74c3c;
+        border-radius: 50%;
+        margin-right: 8px;
+        animation: pulse 1.5s infinite;
+    }
+    
+    .update-info {
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+    
+    .withdrawals-list {
+        max-height: 500px;
+        overflow-y: auto;
+        padding: 0;
+    }
+    
+    .withdrawal-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid #f1f1f1;
+        transition: all 0.3s;
+        animation: fadeIn 0.5s ease-in;
+    }
+    
+    .withdrawal-item:hover {
+        background-color: #f9f9f9;
+    }
+    
+    .withdrawal-item:last-child {
+        border-bottom: none;
+    }
+    
+    .withdrawal-info {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    
+    .withdrawal-user {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    
+    .withdrawal-user-avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        margin-right: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .withdrawal-user-details {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .withdrawal-user-name {
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+    
+    .withdrawal-user-country {
+        font-size: 0.8rem;
+        color: #666;
+        display: flex;
+        align-items: center;
+    }
+    
+    .withdrawal-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+    }
+    
+    .withdrawal-service {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 5px;
+    }
+    
+    .withdrawal-amount {
+        font-weight: bold;
+        color: #e74c3c;
+        font-size: 1.1rem;
+    }
+    
+    .withdrawal-time {
+        font-size: 0.75rem;
+        color: #888;
+        margin-top: 5px;
+    }
+    /* Styles pour l'authentification */
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.auth-tab {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 3px solid transparent;
+}
+
+.auth-tab.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #eee;
+    z-index: 1;
+}
+
+.auth-divider {
+    background-color: white;
+    padding: 0 15px;
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+}
+
+.admin-login-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.admin-login-link a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.admin-login-link a:hover {
+    text-decoration: underline;
+}
+    /* Animations */
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .live-header {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+        
+        .withdrawal-item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .withdrawal-details {
+            margin-top: 10px;
+            align-items: flex-start;
+            text-align: left;
+            width: 100%;
+            padding-left: 47px;
+        }
+        
+        .withdrawal-user-avatar {
+            width: 30px;
+            height: 30px;
+            font-size: 0.8rem;
+        }
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .live-header {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+        
+        .purchase-item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .purchase-details {
+            margin-top: 10px;
+            align-items: flex-start;
+            text-align: left;
+            width: 100%;
+            padding-left: 47px; /* Alignement avec l'avatar */
+        }
+        
+        .user-avatar {
+            width: 30px;
+            height: 30px;
+            font-size: 0.8rem;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .tabs-header {
+            flex-direction: column;
+        }
+        
+        .transaction-item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .transaction-amount {
+            margin-top: 10px;
+        }
+        .nav-toggle {
+                display: block;
+            }   
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background-color: var(--dark-color);
+                width: 100%;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+    }
+         
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+           .nav-toggle {
+                display: block;
+            }   
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background-color: var(--dark-color);
+                width: 100%;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+             .auth-buttons {
+                display: none;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-hero p {
+                font-size: 1rem;
+            }
+            
+            
+            .auth-buttons {
+                display: none;
+            }
+            
+            .services-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .services-hero p {
+                font-size: 1rem;
+            }
+            
+            .account-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-actions {
+                flex-direction: column;
+            }
+            
+            .graph-info, .technical-indicators {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .graph-container {
+                height: 300px;
+            }
+            
+            .investors-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-indicator {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+        
+        /* Animation for price changes */
+        @keyframes flashGreen {
+            0% { background-color: transparent; }
+            50% { background-color: rgba(46, 204, 113, 0.3); }
+            100% { background-color: transparent; }
+        }
+        
+        @keyframes flashRed {
+            0% { background-color: transparent; }
+            50% { background-color: rgba(231, 76, 60, 0.3); }
+            100% { background-color: transparent; }
+        }
+        
+        .price-up {
+            animation: flashGreen 1s ease;
+        }
+        
+        .price-down {
+            animation: flashRed 1s ease;
+        }
+ 

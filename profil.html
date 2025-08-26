@@ -1,0 +1,371 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil - EcoInvest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="profil.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                EcoInvest
+            </a>
+            
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="service.html"><i class="fas fa-solar-panel"></i> Services</a></li>
+                <li><a href="comment.html"><i class="fas fa-info-circle"></i> Comment ça marche</a></li>
+                <li><a href="statistique.html"><i class="fas fa-chart-bar"></i> Statistiques</a></li>
+               <li id="profileMenuItem" style="display: none;"><a href="profil.html"><i class="fas fa-user">Mon profil</i></a></li>
+                <li id="adminMenuItem" style="display: none;"><a href="administrateur.html"><i class="fas fa-cog">Administrateur</i></a></li>
+                                <li id="messagesMenuItem" style="display: none;"><a href="message.html"><i class="fas fa-comments"></i> Messagerie</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="profile-hero">
+        <div class="container">
+            <h1>Mon Profil</h1>
+            <p>Gérez vos investissements, suivez vos gains et effectuez des retraits</p>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-container">
+                <!-- Profile Sidebar -->
+                <div class="profile-sidebar">
+                    <div class="user-info">
+                        <div class="user-avatar" id="userAvatar">
+                            <div class="online-status"></div>
+                        </div>
+                        <h2 class="user-name" id="userName"></h2>
+                        <p class="user-email" id="userEmail"></p>
+                        <span class="user-status">Investisseur Actif</span>
+                    </div>
+                    
+                    <ul class="profile-menu">
+                        <li><a href="#" class="active"><i class="fas fa-user"></i> Profil</a></li>
+                        <li><a href="#" id="editProfileBtn"><i class="fas fa-edit"></i> Modifier le profil</a></li>
+                        <li><a href="#transactions"><i class="fas fa-history"></i> Historique</a></li>
+                        <li><a href="connexion.html"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Profile Content -->
+                <div class="profile-content">
+                    <div class="content-header">
+                        <h2>Mon Portefeuille</h2>
+                        <button class="deposit-btn" id="depositBtn">
+                            <i class="fas fa-plus-circle"></i> Faire un dépôt
+                        </button>
+                    </div>
+                    
+                    <!-- Live Withdrawals -->
+                    <div class="live-withdrawals">
+                        <h3><i class="fas fa-bolt"></i> Retraits en Direct</h3>
+                        <div class="withdrawals-list" id="withdrawalsList">
+                            <!-- Withdrawals will be loaded by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Balance Cards -->
+                    <div class="balance-cards">
+                        <div class="balance-card">
+                            <div class="balance-label">Solde Principal</div>
+                            <div class="balance-amount" id="serviceBalance">0 FCFA</div>
+                            <div class="balance-minimum">Retrait minimum: 25 000 FCFA</div>
+                            <button class="withdraw-btn" id="withdrawService" disabled>Effectuer un retrait</button>
+                        </div>
+                        
+                        <div class="balance-card referral">
+                            <div class="balance-label">Solde de Parrainage</div>
+                            <div class="balance-amount" id="referralBalance">0 FCFA</div>
+                            <div class="balance-minimum">Retrait minimum: 15 000 FCFA</div>
+                            <button class="withdraw-btn" id="withdrawReferral" disabled>Effectuer un retrait</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Referral Section -->
+                    <div class="referral-section">
+                        <div class="referral-header">
+                            <h3>Programme de Parrainage</h3>
+                        </div>
+                        
+                        <div class="referral-stats">
+                            <div class="referral-stat">
+                                <div class="value" id="referralCount">0</div>
+                                <div class="label">Personnes parrainées</div>
+                            </div>
+                            
+                            <div class="referral-stat">
+                                <div class="value" id="totalReferralEarnings">0</div>
+                                <div class="label">Gains de parrainage (FCFA)</div>
+                            </div>
+                            
+                            <div class="referral-stat">
+                                <div class="value">1 000</div>
+                                <div class="label">Gain par parrainage (FCFA)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="referral-link-container">
+                            <h4>Votre lien de parrainage</h4>
+                            <div class="referral-link">
+                                <input type="text" id="referralLink" readonly>
+                                <button class="copy-btn" id="copyLink">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="share-buttons">
+                                <button class="share-btn whatsapp" id="shareWhatsapp">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                </button>
+                                <button class="share-btn facebook" id="shareFacebook">
+                                    <i class="fab fa-facebook"></i> Facebook
+                                </button>
+                                <button class="share-btn telegram" id="shareTelegram">
+                                    <i class="fab fa-telegram"></i> Telegram
+                                </button>
+                            </div>
+                            
+                            <p class="referral-note">Partagez ce lien avec vos amis et gagnez 1 000 FCFA pour chaque personne qui s'inscrit et achète son premier service.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Services Section -->
+                    <div class="services-section">
+                        <div class="services-header">
+                            <h3>Mes Services Actifs</h3>
+                        </div>
+                        
+                        <div class="services-grid" id="activeServices">
+                            <!-- Services will be loaded by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Transactions Section -->
+                    <div class="transactions-section" id="transactions">
+                        <div class="transactions-header">
+                            <h3>Historique des Transactions</h3>
+                        </div>
+                        
+                        <table class="transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Montant</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionsList">
+                                <!-- Transactions will be loaded by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeEditModal">&times;</span>
+            <h3 class="modal-title">Modifier le Profil</h3>
+            
+            <form id="editProfileForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Prénom</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">Nom</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Adresse email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Numéro de téléphone</label>
+                    <input type="tel" class="form-control" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Nouveau mot de passe (laisser vide si inchangé)</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmer le mot de passe</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" id="cancelEdit">Annuler</button>
+                    <button type="submit" class="btn-save">Enregistrer les modifications</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Deposit Modal -->
+    <div class="modal" id="depositModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeDepositModal">&times;</span>
+            <h3 class="modal-title">Faire un Dépôt</h3>
+            
+            <div class="instructions">
+                <div class="instruction-reel">
+                    <p>Pour effectuer un dépôt, suivez ces étapes :</p>
+                <ol >
+                    <li id="liste">Entrez votre numéro MTN Money</li>
+                    <li id="liste">Effectuez le transfert d'argent vers le numéro <strong>677 106 689</strong></li>
+                    <li id="liste">Contactez l'administrateur via WhatsApp pour recevoir votre ID de transaction</li>
+                    <li id="liste">Entrez l'ID reçu dans le champ ci-dessous</li>
+                    <li id="liste">Validez votre dépôt</li>
+                </ol>
+                
+                <a href="https://wa.me/237698413619" class="whatsapp-contact" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Contacter l'administrateur: 698 41 36 19
+                </a>
+                </div>
+            </div>
+            
+            <form id="depositForm">
+                <div class="form-group">
+                    <label for="phoneNumber">Votre numéro MTN Money</label>
+                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required placeholder="Ex: 677 123 456">
+                </div>
+                
+                <div class="form-group">
+                    <label for="depositAmount">Montant du dépôt (FCFA)</label>
+                    <input type="number" class="form-control" id="depositAmount" name="depositAmount" required min="1000" placeholder="Montant envoyé">
+                </div>
+                
+                <div class="form-group">
+                    <label for="transactionId">ID de transaction</label>
+                    <input type="text" class="form-control" id="transactionId" name="transactionId" required placeholder="ID reçu de l'administrateur">
+                </div>
+                
+                <div class="form-actions">
+                    <a href="https://wa.me/237698413619" class="btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Contacter
+                    </a>
+                    <button type="submit" class="btn-confirm">Valider le dépôt</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Withdrawal Modal -->
+    <div class="modal" id="withdrawalModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeWithdrawalModal">&times;</span>
+            <h3 class="modal-title" id="withdrawalModalTitle">Demande de Retrait</h3>
+            
+            <div class="instructions">
+                <p>Pour effectuer un retrait, suivez ces étapes :</p>
+                <ol>
+                    <li>Contactez l'administrateur via WhatsApp pour demander un retrait</li>
+                    <li>Indiquez le montant que vous souhaitez retirer</li>
+                    <li>Recevez votre ID de retrait unique</li>
+                    <li>Entrez l'ID reçu dans le champ ci-dessous</li>
+                    <li>Validez votre demande de retrait</li>
+                </ol>
+                
+                <a href="https://wa.me/237698413619" class="whatsapp-contact" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Contacter l'administrateur: 698 41 36 19
+                </a>
+            </div>
+            
+            <form id="withdrawalForm">
+                <input type="hidden" id="withdrawalType" name="withdrawalType">
+                <input type="hidden" id="withdrawalAmount" name="withdrawalAmount">
+                
+                <div class="form-group">
+                    <label for="withdrawalId">ID de retrait</label>
+                    <input type="text" class="form-control" id="withdrawalId" name="withdrawalId" required placeholder="ID reçu de l'administrateur">
+                </div>
+                
+                <div class="form-actions">
+                    <a href="https://wa.me/237698413619" class="btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Contacter
+                    </a>
+                    <button type="submit" class="btn-confirm">Confirmer le retrait</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>EcoInvest</h3>
+                    <p>Plateforme d'investissement dans des projets écologiques avec des rendements attractifs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                        <li><a href="service.html"><i class="fas fa-solar-panel"></i> Services</a></li>
+                        <li><a href="comment.html"><i class="fas fa-info-circle"></i> Comment ça marche</a></li>
+                        <li><a href="statistique.html"><i class="fas fa-chart-bar"></i> Statistiques</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li><a href="politique-confidentialite.html"><i class="fas fa-shield-alt"></i> Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html"><i class="fas fa-file-contract"></i> Conditions d'utilisation</a></li>
+                        <li><a href="contact.html"><i class="fas fa-headset"></i> Contactez-nous</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 EcoInvest. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="profil.js"></script>
+</body>
+</html>

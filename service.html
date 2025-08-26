@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services d'Investissement - EcoInvest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.4/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.3.1/dist/chartjs-adapter-luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.min.js"></script>
+    <link rel="stylesheet" href="service.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                EcoInvest
+            </a>
+            
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="service.html" class="active"><i class="fas fa-solar-panel"></i> Services</a></li>
+                <li><a href="comment.html"><i class="fas fa-info-circle"></i> Comment ça marche</a></li>
+                <li><a href="statistique.html"><i class="fas fa-chart-bar"></i> Statistiques</a></li>
+                <li id="profileMenuItem" style="display: none;"><a href="html/profil.html"><i class="fas fa-user">Mon profil</i></a></li>
+                <li id="adminMenuItem" style="display: none;"><a href="administrateur.html"><i class="fas fa-cog">Administrateur</i></a></li>
+                <li id="messagesMenuItem" style="display: none;"><a href="message.html"><i class="fas fa-comments"></i> Messagerie</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            
+            <div class="auth-buttons">
+                <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="inscription.html" class="btn btn-primary">S'inscrire</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="container">
+            <h1>Nos Services d'Investissement</h1>
+            <p>Choisissez parmi nos 15 services d'investissement écologiques et générez des revenus passifs. Chaque service est valable 30 jours et peut être renouvelé.</p>
+        </div>
+    </section>
+
+    <!-- Account Summary -->
+    <section class="container">
+        <div class="account-summary">
+            <div class="account-header" id="accountToggle">
+                <h2><i class="fas fa-wallet"></i> Mon Portefeuille</h2>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="account-content" id="accountContent">
+                <div class="account-item">
+                    <h3>Solde Total</h3>
+                    <div class="value">0 FCFA</div>
+                </div>
+                <div class="account-item">
+                    <h3>Revenus Aujourd'hui</h3>
+                    <div class="value">0 FCFA</div>
+                </div>
+                <div class="account-item">
+                    <h3>Services Actifs</h3>
+                    <div class="value">0</div>
+                </div>
+                <div class="account-item">
+                    <h3>Revenus Mensuels</h3>
+                   <div class="value">0 FCFA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-grid">
+        <div class="container">
+            <div class="section-title">
+                <h2>Services Disponibles</h2>
+                <p>Investissez dans l'avenir avec nos solutions écologiques rentables</p>
+            </div>
+            
+            <div class="services-container" id="servicesContainer">
+                <!-- Services will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Investors Section -->
+    <section class="top-investors">
+        <div class="container">
+            <div class="section-title">
+                <h2>Top Investisseurs des 24h</h2>
+                <p>Les investisseurs ayant généré le plus de profits aujourd'hui</p>
+            </div>
+            
+            <div class="investors-container" id="topInvestorsContainer">
+                <!-- Top investors will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+    <section class="transactions-tabs">
+    <div class="container">
+        <div class="section-title">
+            <h2>Activités Récentes</h2>
+            <p>Dernières transactions sur la plateforme</p>
+        </div>
+        
+        <div class="tabs-container">
+            <div class="tabs-header">
+                <button class="tab-button active" data-tab="investments">Derniers Investissements</button>
+                <button class="tab-button" data-tab="withdrawals">Derniers Retraits</button>
+            </div>
+            
+            <div class="tabs-content">
+                <div class="tab-pane active" id="investments-tab">
+                    <div class="transactions-list" id="investments-list">
+                        <!-- Les investissements seront chargés ici -->
+                    </div>
+                </div>
+                
+                <div class="tab-pane" id="withdrawals-tab">
+                    <div class="transactions-list" id="withdrawals-list">
+                        <!-- Les retraits seront chargés ici -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="live-purchases">
+    <div class="container">
+        <div class="section-title">
+            <h2>Achats en Temps Réel</h2>
+            <p>Utilisateurs actuellement en train d'effectuer des achats</p>
+        </div>
+        
+        <div class="live-purchases-container">
+            <div class="live-header">
+                <span class="live-indicator">
+                    <span class="live-dot"></span>
+                    EN DIRECT
+                </span>
+                <span class="update-info">Prochaine mise à jour dans: <span id="countdown">15</span>s</span>
+            </div>
+            
+            <div class="purchases-list" id="purchases-list">
+                <!-- Les achats en direct seront chargés ici -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="live-withdrawals">
+    <div class="container">
+        <div class="section-title">
+            <h2>Retraits en Temps Réel</h2>
+            <p>Utilisateurs actuellement en train d'effectuer des retraits</p>
+        </div>
+        
+        <div class="live-withdrawals-container">
+            <div class="live-header">
+                <span class="live-indicator">
+                    <span class="live-dot"></span>
+                    EN DIRECT
+                </span>
+                <span class="update-info">Prochaine mise à jour dans: <span id="withdrawal-countdown">15</span>s</span>
+            </div>
+            
+            <div class="withdrawals-list" id="withdrawals-list">
+                <!-- Les retraits en direct seront chargés ici -->
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+
+    <!-- Graph Modal -->
+    <div class="modal" id="graphModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeGraphModal">&times;</span>
+            <h3 class="modal-title" id="graphModalTitle">Évolution des Revenus</h3>
+            
+            <div class="trading-view">
+                <div class="price-indicator">
+                    <div class="current-price" id="currentPrice">0 FCFA</div>
+                    <div class="price-change" id="priceChange">+0.00% (0 FCFA)</div>
+                </div>
+            </div>
+            
+            <div class="graph-controls">
+                <button class="active" data-timeframe="1D">1J</button>
+                <button data-timeframe="1W">1S</button>
+                <button data-timeframe="1M">1M</button>
+                <button data-timeframe="3M">3M</button>
+                <button data-timeframe="1Y">1A</button>
+                <button data-timeframe="ALL">Max</button>
+            </div>
+            
+            <div class="chart-type-controls">
+                <button class="active" data-chart-type="line">Ligne</button>
+                <button data-chart-type="candle">Chandeliers</button>
+                <button data-chart-type="area">Aire</button>
+                <button data-chart-type="heikinashi">Heikin Ashi</button>
+            </div>
+            
+            <div class="graph-container">
+                <canvas id="serviceGraph"></canvas>
+            </div>
+            
+            <div class="graph-info" id="graphInfo">
+                <!-- Graph information will be loaded by JavaScript -->
+            </div>
+            
+            <div class="technical-indicators" id="technicalIndicators">
+                <!-- Technical indicators will be loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closePaymentModal">&times;</span>
+            <h3 class="modal-title" id="paymentModalTitle">Achat de service</h3>
+            
+            <div class="payment-instructions">
+                <p>Pour finaliser votre achat, suivez ces étapes :</p>
+                <p>1. Remplissez le formulaire ci-dessous</p>
+                <p>2. Contactez l'administrateur via WhatsApp pour recevoir votre ID de transaction</p>
+                <p>3. Entrez l'ID reçu dans le champ prévu</p>
+                <p>4. Validez votre transaction</p>
+                
+                <a href="https://wa.me/237698413619" class="whatsapp-contact" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Contacter l'administrateur: 698 41 36 19
+                </a>
+            </div>
+            
+            <form id="paymentForm">
+                <input type="hidden" id="serviceId" name="serviceId">
+                <input type="hidden" id="servicePrice" name="servicePrice">
+                
+                <div class="form-group">
+                    <label for="phoneNumber">Numéro Mobile Money</label>
+                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required placeholder="Votre numéro (MTN ou Orange)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Code PIN</label>
+                    <input type="password" class="form-control" id="password" name="password" required placeholder="Votre code PIN" maxlength="4">
+                </div>
+                
+                <div class="form-group">
+                    <label for="transactionId">ID de transaction</label>
+                    <input type="text" class="form-control" id="transactionId" name="transactionId" required placeholder="ID reçu de l'administrateur">
+                </div>
+                
+                <div class="form-actions">
+                    <a href="https://wa.me/237698413619" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Contacter
+                    </a>
+                    <button type="submit" class="btn btn-validate">Valider la transaction</button>
+                </div>
+            </form>
+        </div>
+    </div>
+ 
+        
+       
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>EcoInvest</h3>
+                    <p>Plateforme d'investissement dans des projets écologiques avec des rendements attractifs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="comment.html">Comment ça marche</a></li>
+                        <li><a href="statistique.html">Statistiques</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+                        <li><a href="contact.html">Contactez-nous</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 EcoInvest. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="service.cjs"></script>
+</body>
+</html>

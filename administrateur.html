@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - EcoInvest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" href="administrateur.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                EcoInvest
+            </a>
+            
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="service.html"><i class="fas fa-solar-panel"></i> Services</a></li>
+                <li><a href="comment.html"><i class="fas fa-info-circle"></i> Comment ça marche</a></li>
+                <li><a href="statistique.html"><i class="fas fa-chart-bar"></i> Statistiques</a></li>
+                <li id="profileMenuItem" style="display: none;"><a href="profil.html"><i class="fas fa-user">Mon profil</i></a></li>
+                <li id="adminMenuItem" style="display: none;"><a href="administrateur.html"><i class="fas fa-cog">Administrateur</i></a></li>
+                                <li id="messagesMenuItem" style="display: none;"><a href="message.html"><i class="fas fa-comments"></i> Messagerie</a></li>
+                <li><a href="contact.html" class="active"><i class="fas fa-cog"></i> Contact</a></li>
+            </ul>
+            
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Hero Section -->
+    <section class="admin-hero">
+        <div class="container">
+            <h1>Espace Administrateur</h1>
+            <p>Gérez les utilisateurs, les transactions et surveillez l'activité de la plateforme</p>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-dashboard">
+        <div class="container">
+            <!-- Dashboard Stats -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Utilisateurs Totaux</h3>
+                    <div class="dashboard-value" id="totalUsers">1,245</div>
+                    <div class="dashboard-change positive">+32 cette semaine</div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Transactions Today</h3>
+                    <div class="dashboard-value" id="todayTransactions">86</div>
+                    <div class="dashboard-change positive">+12% hier</div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Revenus Totaux</h3>
+                    <div class="dashboard-value" id="totalRevenue">5,842,500 FCFA</div>
+                    <div class="dashboard-change positive">+8% ce mois</div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Retraits en Attente</h3>
+                    <div class="dashboard-value" id="pendingWithdrawals">18</div>
+                    <div class="dashboard-change negative">+3 depuis hier</div>
+                </div>
+            </div>
+            
+            <!-- Users Management Section -->
+            <div class="admin-section">
+                <div class="section-header">
+                    <h2>Gestion des Utilisateurs</h2>
+                    <div class="section-actions">
+                        <input type="text" class="form-control" placeholder="Rechercher un utilisateur..." id="userSearch">
+                    </div>
+                </div>
+                
+                <table class="admin-table" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="id">ID <i class="fas fa-sort"></i></th>
+                            <th data-sort="name">Nom <i class="fas fa-sort"></i></th>
+                            <th data-sort="email">Email <i class="fas fa-sort"></i></th>
+                            <th data-sort="referrals">Filleuls <i class="fas fa-sort"></i></th>
+                            <th data-sort="balance">Solde <i class="fas fa-sort"></i></th>
+                            <th data-sort="status">Statut <i class="fas fa-sort"></i></th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersList">
+                        <!-- Users will be loaded by JavaScript -->
+                    </tbody>
+                </table>
+                
+                <div class="pagination" id="usersPagination">
+                    <!-- Pagination will be loaded by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- ID Generation Section -->
+            <div class="admin-section">
+                <div class="section-header">
+                    <h2>Génération d'IDs de Transaction</h2>
+                </div>
+                
+                <div class="id-generation">
+                    <h3>Générer un ID de Paiement</h3>
+                    <p>Entrez le montant du dépôt pour générer un ID de transaction unique</p>
+                    
+                    <div class="id-form">
+                        <div class="form-group">
+                            <label for="depositAmount">Montant (FCFA)</label>
+                            <input type="number" class="form-control" id="depositAmount" placeholder="Ex: 25000" min="1000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="userPhone">Numéro de téléphone</label>
+                            <input type="text" class="form-control" id="userPhone" placeholder="Ex: 677123456">
+                        </div>
+                        
+                        <button class="action-btn btn-generate" id="generateDepositId">
+                            <i class="fas fa-key"></i> Générer ID
+                        </button>
+                    </div>
+                    
+                    <div class="id-result" id="depositIdResult" style="display: none;">
+                        <div class="id-value" id="depositIdValue"></div>
+                        <p>Remettez cet ID à l'utilisateur pour finaliser son dépôt</p>
+                        <button class="id-copy" id="copyDepositId">
+                            <i class="fas fa-copy"></i> Copier l'ID
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="id-generation">
+                    <h3>Générer un ID de Retrait</h3>
+                    <p>Entrez le montant du retrait pour générer un ID de transaction unique</p>
+                    
+                    <div class="id-form">
+                        <div class="form-group">
+                            <label for="withdrawalAmount">Montant (FCFA)</label>
+                            <input type="number" class="form-control" id="withdrawalAmount" placeholder="Ex: 25000" min="15000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="withdrawalUser">Utilisateur</label>
+                            <select class="form-control" id="withdrawalUser">
+                                <option value="">Sélectionner un utilisateur</option>
+                                <!-- Users will be loaded by JavaScript -->
+                            </select>
+                        </div>
+                        
+                        <button class="action-btn btn-generate" id="generateWithdrawalId">
+                            <i class="fas fa-key"></i> Générer ID
+                        </button>
+                    </div>
+                    
+                    <div class="id-result" id="withdrawalIdResult" style="display: none;">
+                        <div class="id-value" id="withdrawalIdValue"></div>
+                        <p>Remettez cet ID à l'utilisateur pour finaliser son retrait</p>
+                        <button class="id-copy" id="copyWithdrawalId">
+                            <i class="fas fa-copy"></i> Copier l'ID
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Withdrawal Section -->
+<div class="admin-section">
+    <div class="section-header">
+        <h2>Retrait Administrateur</h2>
+    </div>
+    
+    <div class="id-generation">
+        <h3>Effectuer un retrait vers votre compte</h3>
+        <p>Retirez des fonds de la plateforme vers votre compte personnel</p>
+        
+        <form id="adminWithdrawalForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="adminAccount">Numéro de compte</label>
+                    <input type="text" class="form-control" id="adminAccount" placeholder="Votre numéro de compte" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="adminPassword">Mot de passe administrateur</label>
+                    <input type="password" class="form-control" id="adminPassword" placeholder="Votre mot de passe" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="adminWithdrawalAmount">Montant à retirer (FCFA)</label>
+                <input type="number" class="form-control" id="adminWithdrawalAmount" placeholder="Ex: 100000" min="50000" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="withdrawalReason">Motif du retrait</label>
+                <select class="form-control" id="withdrawalReason" required>
+                    <option value="">Sélectionnez un motif</option>
+                    <option value="maintenance">Maintenance de la plateforme</option>
+                    <option value="investment">Investissement</option>
+                    <option value="operational">Frais opérationnels</option>
+                    <option value="other">Autre</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="otherReasonContainer" style="display: none;">
+                <label for="otherReason">Précisez le motif</label>
+                <input type="text" class="form-control" id="otherReason" placeholder="Expliquez le motif du retrait">
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="action-btn btn-generate">
+                    <i class="fas fa-money-bill-wave"></i> Effectuer le retrait
+                </button>
+            </div>
+        </form>
+        
+        <div class="id-result" id="adminWithdrawalResult" style="display: none;">
+            <div class="id-value" id="adminWithdrawalIdValue"></div>
+            <p>Retrait effectué avec succès. Les fonds seront transférés dans un délai de 24h.</p>
+        </div>
+    </div>
+</div>
+            
+            <!-- Transactions Section -->
+            <div class="admin-section">
+                <div class="section-header">
+                    <h2>Historique des Transactions</h2>
+                    <div class="section-actions">
+                        <select class="form-control" id="transactionFilter">
+                            <option value="all">Toutes les transactions</option>
+                            <option value="deposit">Dépôts</option>
+                            <option value="withdrawal">Retraits</option>
+                            <option value="bonus">Bonus</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <table class="admin-table" id="transactionsTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="date">Date <i class="fas fa-sort"></i></th>
+                            <th data-sort="user">Utilisateur <i class="fas fa-sort"></i></th>
+                            <th data-sort="type">Type <i class="fas fa-sort"></i></th>
+                            <th data-sort="amount">Montant <i class="fas fa-sort"></i></th>
+                            <th data-sort="status">Statut <i class="fas fa-sort"></i></th>
+                            <th>ID Transaction</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsList">
+                        <!-- Transactions will be loaded by JavaScript -->
+                    </tbody>
+                </table>
+                
+                <div class="pagination" id="transactionsPagination">
+                    <!-- Pagination will be loaded by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Referral Stats Section -->
+            <div class="admin-section">
+                <div class="section-header">
+                    <h2>Statistiques de Parrainage</h2>
+                </div>
+                
+                <table class="admin-table" id="referralTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="user">Utilisateur <i class="fas fa-sort"></i></th>
+                            <th data-sort="referrals">Nombre de Filleuls <i class="fas fa-sort"></i></th>
+                            <th data-sort="earnings">Gains de Parrainage <i class="fas fa-sort"></i></th>
+                            <th data-sort="active">Filleuls Actifs <i class="fas fa-sort"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="referralList">
+                        <!-- Referral stats will be loaded by JavaScript -->
+                    </tbody>
+                </table>
+                
+                <div class="pagination" id="referralPagination">
+                    <!-- Pagination will be loaded by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>EcoInvest</h3>
+                    <p>Plateforme d'investissement dans des projets écologiques avec des rendements attractifs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                        <li><a href="service.html"><i class="fas fa-solar-panel"></i> Services</a></li>
+                        <li><a href="comment.html"><i class="fas fa-info-circle"></i> Comment ça marche</a></li>
+                        <li><a href="statistique.html"><i class="fas fa-chart-bar"></i> Statistiques</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li><a href="politique-confidentialite.html"><i class="fas fa-shield-alt"></i> Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html"><i class="fas fa-file-contract"></i> Conditions d'utilisation</a></li>
+                        <li><a href="contact.html"><i class="fas fa-headset"></i> Contactez-nous</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 EcoInvest. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="administrateur.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

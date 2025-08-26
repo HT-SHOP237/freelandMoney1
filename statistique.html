@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques - EcoInvest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="statistique.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                EcoInvest
+            </a>
+            
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="service.html"><i class="fas fa-solar-panel"></i> Services</a></li>
+                <li><a href="comment.html"><i class="fas fa-info-circle"></i> Comment ça marche</a></li>
+                <li><a href="statistique.html" class="active"><i class="fas fa-chart-bar"></i> Statistiques</a></li>
+                <li id="profileMenuItem" style="display: none;"><a href="profil.html"><i class="fas fa-user">Mon profil</i></a></li>
+                <li id="adminMenuItem" style="display: none;"><a href="administrateur.html"><i class="fas fa-cog">Administrateur</i></a></li>
+                                <li id="messagesMenuItem" style="display: none;"><a href="message.html"><i class="fas fa-comments"></i> Messagerie</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            
+            <div class="auth-buttons">
+                <a href="connexion.html" class="btn btn-outline"><i class="fas fa-sign-in-slt">Connexion</i></a>
+                <a href="inscription.html" class="btn btn-primary"><i class="fas fa-user-plus">S'inscrire</i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="stats-hero">
+        <div class="container">
+            <h1>Statistiques en Temps Réel</h1>
+            <p>Découvrez les performances de notre plateforme et suivez l'activité des investisseurs en direct</p>
+        </div>
+    </section>
+
+    <!-- Live Activity Section -->
+    <section class="live-activity">
+        <div class="container">
+            <div class="section-title">
+                <h2>Activité en Direct</h2>
+                <p>Suivez les dernières transactions et investissements en temps réel</p>
+            </div>
+            
+            <div class="activity-container">
+                <div class="activity-box">
+                    <div class="activity-header">
+                        <h3><i class="fas fa-users"></i> Nouveaux Investisseurs</h3>
+                        <span class="live-badge">EN DIRECT</span>
+                    </div>
+                    <div class="activity-list" id="newUsersList">
+                        <!-- New users will be loaded by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="activity-box">
+                    <div class="activity-header">
+                        <h3><i class="fas fa-shopping-cart"></i> Achats Récents</h3>
+                        <span class="live-badge">EN DIRECT</span>
+                    </div>
+                    <div class="activity-list" id="recentPurchasesList">
+                        <!-- Recent purchases will be loaded by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="activity-box">
+                    <div class="activity-header">
+                        <h3><i class="fas fa-money-bill-wave"></i> Retraits Réussis</h3>
+                        <span class="live-badge">EN DIRECT</span>
+                    </div>
+                    <div class="activity-list" id="recentWithdrawalsList">
+                        <!-- Recent withdrawals will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Overview Section -->
+    <section class="stats-overview">
+        <div class="container">
+            <div class="section-title">
+                <h2>Aperçu des Statistiques</h2>
+                <p>Les chiffres clés de notre plateforme</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-value" id="totalUsers">12,458</div>
+                    <div class="stat-label">Investisseurs Actifs</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <div class="stat-value" id="totalServices">8,742</div>
+                    <div class="stat-label">Services Actifs</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="stat-value" id="totalInvested">187,540,000</div>
+                    <div class="stat-label">FCFA Investis</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="stat-value" id="totalWithdrawn">56,320,000</div>
+                    <div class="stat-label">FCFA Retirés</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section class="charts-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Graphiques de Performance</h2>
+                <p>Analysez les tendances et performances des services</p>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Services les Plus Populaires</h3>
+                    <div class="chart-controls">
+                        <button class="active" data-period="week">Semaine</button>
+                        <button data-period="month">Mois</button>
+                        <button data-period="year">Année</button>
+                    </div>
+                </div>
+                <div class="chart-canvas-container">
+                    <canvas id="servicesChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Évolution des Revenus</h3>
+                    <div class="chart-controls">
+                        <button class="active" data-period="week">Semaine</button>
+                        <button data-period="month">Mois</button>
+                        <button data-period="year">Année</button>
+                    </div>
+                </div>
+                <div class="chart-canvas-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Lists Section -->
+    <section class="top-lists">
+        <div class="container">
+            <div class="section-title">
+                <h2>Classements</h2>
+                <p>Découvrez les meilleurs performeurs de notre plateforme</p>
+            </div>
+            
+            <div class="top-grid">
+                <div class="top-list">
+                    <div class="top-list-header">
+                        <h3><i class="fas fa-trophy"></i> Top 10 Investisseurs</h3>
+                    </div>
+                    <div class="top-list-content" id="topInvestorsList">
+                        <!-- Top investors will be loaded by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="top-list">
+                    <div class="top-list-header">
+                        <h3><i class="fas fa-money-bill-wave"></i> Top 20 Retraits</h3>
+                    </div>
+                    <div class="top-list-content" id="topWithdrawalsList">
+                        <!-- Top withdrawals will be loaded by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="top-list">
+                    <div class="top-list-header">
+                        <h3><i class="fas fa-chart-line"></i> Services les Plus Performants</h3>
+                    </div>
+                    <div class="top-list-content" id="topServicesList">
+                        <!-- Top services will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>EcoInvest</h3>
+                    <p>Plateforme d'investissement dans des projets écologiques avec des rendements attractifs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="comment.html">Comment ça marche</a></li>
+                        <li><a href="statistique.html">Statistiques</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li>
+                        <li><a href="contact.html">Contactez-nous</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 EcoInvest. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="statistique.js"></script>
+</body>
+</html>

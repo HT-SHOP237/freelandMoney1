@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messagerie - EcoInvest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="message.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                EcoInvest
+            </a>
+             <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="service.html"><i class="fas fa-solar-panel"></i> Services</a></li>
+                <li><a href="comment.html"><i class="fas fa-info-circle"></i> Comment ça marche</a></li>
+                <li><a href="statistique.html"><i class="fas fa-chart-bar"></i> Statistiques</a></li>
+                <li id="profileMenuItem" style="display: none;"><a href="profil.html"><i class="fas fa-user">Mon profil</i></a></li>
+                <li id="adminMenuItem" style="display: none;"><a href="administrateur.html"><i class="fas fa-cog">Administrateur</i></a></li>
+                                <li id="messagesMenuItem" style="display: none;"><a href="message.html"><i class="fas fa-comments"></i> Messagerie</a></li>
+                <li><a href="contact.html" class="active"><i class="fas fa-cog"></i> Contact</a></li>
+            </ul>
+            
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Messagerie Section -->
+    <section class="messages-section">
+        <div class="container">
+            <div class="messages-container">
+                <!-- Contacts Sidebar -->
+                <div class="contacts-sidebar">
+                    <div class="contacts-header">
+                        <div class="contacts-search">
+                            <input type="text" placeholder="Rechercher un contact...">
+                            <button class="new-conversation-btn" id="newConversationBtn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="contacts-list" id="contactsList">
+                        <!-- Liste des contacts chargée par JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Chat Area -->
+                <div class="chat-area">
+                    <div class="chat-header">
+                        <div class="chat-user-avatar" id="currentChatAvatar">?</div>
+                        <div class="chat-user-info">
+                            <div class="chat-user-name" id="currentChatName">Sélectionnez une conversation</div>
+                            <div class="chat-user-status" id="currentChatStatus">En ligne</div>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="chat-action-btn" id="chatMenuBtn">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="messages-container" id="messagesContainer">
+                        <div class="no-chat-selected">
+                            <i class="fas fa-comments"></i>
+                            <p>Sélectionnez une conversation pour commencer à discuter</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-area">
+                        <textarea class="chat-input" id="messageInput" placeholder="Tapez votre message..." rows="1"></textarea>
+                        <button class="send-btn" id="sendMessageBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Nouvelle Conversation -->
+    <div class="modal" id="newConversationModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeNewConversationModal">&times;</span>
+            <h3 class="modal-title">Nouvelle conversation</h3>
+            
+            <div class="users-list" id="usersList">
+                <!-- Liste des utilisateurs chargée par JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="message.js"></script>
+</body>
+</html>
