@@ -187,13 +187,13 @@ function updateMenu() {
             const serviceBtn = document.getElementById('withdrawService');
             const referralBtn = document.getElementById('withdrawReferral');
             
-            // Service balance (minimum 25,000 FCFA)
-            if (userData.serviceBalance >= 25000) {
+            // Service balance (minimum 11,000 FCFA)
+            if (userData.serviceBalance >= 11000) {
                 serviceBtn.disabled = false;
                 serviceBtn.textContent = "Effectuer un retrait";
             } else {
                 serviceBtn.disabled = true;
-                serviceBtn.textContent = `Encore ${(25000 - userData.serviceBalance).toLocaleString()} FCFA pour retirer`;
+                serviceBtn.textContent = `Encore ${(11000 - userData.serviceBalance).toLocaleString()} FCFA pour retirer`;
             }
             
             // Referral balance (minimum 15,000 FCFA)
@@ -659,4 +659,5 @@ function updateMenu() {
             // Mettre à jour les retraits en direct toutes les 10 secondes
             setInterval(updateLiveWithdrawals, 10000);
         });
+
     
